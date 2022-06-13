@@ -15,6 +15,10 @@ class ToDoItem extends Component {
             this.setState({editing: false})
         }
     }
+
+    componentWillUnmount() {
+        console.log("Cleaning up ...")
+    }
     
     render() {
 

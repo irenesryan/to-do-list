@@ -6,23 +6,7 @@ import InputToDo from './InputToDo';
 
 class ToDoContainer extends Component {
     state = {
-        todos: [
-            {
-                id: uuidv4(),
-                title: 'Setup development enviornment',
-                completed: true
-            },
-            {
-                id: uuidv4(),
-                title: 'Develop website and add content',
-                completed: false
-            },
-            {
-                id: uuidv4(),
-                title: 'Deploy to live server',
-                completed: false
-            }
-        ]
+        todos: []
     };
 
     handleChange = (id) => {
@@ -67,6 +51,21 @@ class ToDoContainer extends Component {
                 return todo
             })
         })
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.todo !== this.state.do) {
+            const temp = JSON.stringify(this.state.todo)
+            localStorage.setItem("todos", temp)
+        }
+    }
+
+    componentDidMount() {
+        const temp = localStorage.getItem("todos")
+        const loadedTodos = JSON.parse(temp)
+        if (loadedTodos) {
+            this.setState({todos: loadedTodos})
+        }
     }
 
     render() {
