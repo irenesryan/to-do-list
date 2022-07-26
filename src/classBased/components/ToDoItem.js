@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import styles from "./ToDoItem.module.css"
+import styles from "./ToDoItem.module.css";
+import { FaTrash } from "react-icons/fa"
 
 class ToDoItem extends Component {
 
@@ -50,7 +51,7 @@ class ToDoItem extends Component {
                         onChange={() => this.props.handleChangeProps(id)}
                     />
                     <button onClick={() => this.props.deleteToDoProps(id)}>
-                        Delete
+                        <FaTrash />
                     </button>
                     <span style={completed ? completedStyle : null}>
                         {title}
